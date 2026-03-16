@@ -1,0 +1,10 @@
+# MSR Physical AI Layer – dependencies
+
+# No external MCP SDK required; the server is implemented against the MCP
+# JSON-RPC 2.0 wire protocol using only the Python standard library.
+
+# Dense vector support (optional, for future sensor-fusion / RAG integration)
+numpy>=1.24.0
+
+# Testing
+pytest>=8.0.0
