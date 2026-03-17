@@ -49,8 +49,12 @@ OPERATIONAL_AREAS: list[dict[str, Any]] = [
         ),
         "robot_id": "PLMR-01",
         "robot_type": "Primary Loop Maintenance Robot",
-        "key_sensors": ["loop_temp_c", "loop_pressure_bar", "neutron_dose_rate_msv_h",
-                        "pump_vibration_mm_s"],
+        "key_sensors": [
+            "loop_temp_c",
+            "loop_pressure_bar",
+            "neutron_dose_rate_msv_h",
+            "pump_vibration_mm_s",
+        ],
     },
     {
         "area_id": "hot_cell_chemical_processing",
@@ -63,8 +67,12 @@ OPERATIONAL_AREAS: list[dict[str, Any]] = [
         ),
         "robot_id": "HCPR-01",
         "robot_type": "Hot-Cell Processing Robot",
-        "key_sensors": ["redox_potential_mv", "noble_metal_ppm", "tritium_activity_bq_m3",
-                        "cell_gamma_dose_rate_msv_h"],
+        "key_sensors": [
+            "redox_potential_mv",
+            "noble_metal_ppm",
+            "tritium_activity_bq_m3",
+            "cell_gamma_dose_rate_msv_h",
+        ],
     },
     {
         "area_id": "salt_sampling_analysis",
@@ -77,8 +85,12 @@ OPERATIONAL_AREAS: list[dict[str, Any]] = [
         ),
         "robot_id": "SSR-01",
         "robot_type": "Salt Sampling Robot",
-        "key_sensors": ["sample_temp_c", "fissile_conc_g_l", "corrosion_product_ppm",
-                        "sample_gamma_dose_rate_msv_h"],
+        "key_sensors": [
+            "sample_temp_c",
+            "fissile_conc_g_l",
+            "corrosion_product_ppm",
+            "sample_gamma_dose_rate_msv_h",
+        ],
     },
     {
         "area_id": "radiation_mapping_inspection",
@@ -91,8 +103,12 @@ OPERATIONAL_AREAS: list[dict[str, Any]] = [
         ),
         "robot_id": "RMR-01",
         "robot_type": "Radiation Mapping Robot",
-        "key_sensors": ["gamma_dose_rate_msv_h", "neutron_flux_n_cm2_s",
-                        "surface_temp_c", "leakage_indicator"],
+        "key_sensors": [
+            "gamma_dose_rate_msv_h",
+            "neutron_flux_n_cm2_s",
+            "surface_temp_c",
+            "leakage_indicator",
+        ],
     },
     {
         "area_id": "freeze_plug_monitoring",
@@ -104,8 +120,12 @@ OPERATIONAL_AREAS: list[dict[str, Any]] = [
         ),
         "robot_id": "FPMR-01",
         "robot_type": "Freeze Plug Monitor Robot",
-        "key_sensors": ["plug_temp_c", "drain_tank_level_pct", "plug_integrity_ok",
-                        "coolant_flow_l_min"],
+        "key_sensors": [
+            "plug_temp_c",
+            "drain_tank_level_pct",
+            "plug_integrity_ok",
+            "coolant_flow_l_min",
+        ],
     },
     {
         "area_id": "fuel_salt_transport",
@@ -118,8 +138,12 @@ OPERATIONAL_AREAS: list[dict[str, Any]] = [
         ),
         "robot_id": "FSTR-01",
         "robot_type": "Fuel Salt Transport Robot",
-        "key_sensors": ["transfer_line_temp_c", "salt_flow_kg_min", "valve_position_pct",
-                        "leak_detection_ok"],
+        "key_sensors": [
+            "transfer_line_temp_c",
+            "salt_flow_kg_min",
+            "valve_position_pct",
+            "leak_detection_ok",
+        ],
     },
     {
         "area_id": "graphite_moderator_inspection",
@@ -132,8 +156,12 @@ OPERATIONAL_AREAS: list[dict[str, Any]] = [
         ),
         "robot_id": "GIR-01",
         "robot_type": "Graphite Inspection Robot",
-        "key_sensors": ["graphite_surface_temp_c", "crack_count", "swelling_mm",
-                        "channel_dose_rate_msv_h"],
+        "key_sensors": [
+            "graphite_surface_temp_c",
+            "crack_count",
+            "swelling_mm",
+            "channel_dose_rate_msv_h",
+        ],
     },
     {
         "area_id": "tritium_management",
@@ -145,8 +173,12 @@ OPERATIONAL_AREAS: list[dict[str, Any]] = [
         ),
         "robot_id": "TMR-01",
         "robot_type": "Tritium Management Robot",
-        "key_sensors": ["tritium_conc_bq_m3", "cold_trap_temp_c", "permeation_barrier_ok",
-                        "tritium_dose_rate_msv_h"],
+        "key_sensors": [
+            "tritium_conc_bq_m3",
+            "cold_trap_temp_c",
+            "permeation_barrier_ok",
+            "tritium_dose_rate_msv_h",
+        ],
     },
     {
         "area_id": "off_gas_system",
@@ -158,8 +190,12 @@ OPERATIONAL_AREAS: list[dict[str, Any]] = [
         ),
         "robot_id": "OGSR-01",
         "robot_type": "Off-Gas System Robot",
-        "key_sensors": ["xenon_activity_bq_m3", "krypton_activity_bq_m3",
-                        "filter_dp_bar", "vessel_pressure_bar"],
+        "key_sensors": [
+            "xenon_activity_bq_m3",
+            "krypton_activity_bq_m3",
+            "filter_dp_bar",
+            "vessel_pressure_bar",
+        ],
     },
     {
         "area_id": "waste_salt_handling",
@@ -171,8 +207,12 @@ OPERATIONAL_AREAS: list[dict[str, Any]] = [
         ),
         "robot_id": "WSHR-01",
         "robot_type": "Waste Salt Handling Robot",
-        "key_sensors": ["container_temp_c", "container_dose_rate_msv_h",
-                        "solidification_pct", "storage_capacity_pct"],
+        "key_sensors": [
+            "container_temp_c",
+            "container_dose_rate_msv_h",
+            "solidification_pct",
+            "storage_capacity_pct",
+        ],
     },
     {
         "area_id": "structural_inspection",
@@ -184,8 +224,12 @@ OPERATIONAL_AREAS: list[dict[str, Any]] = [
         ),
         "robot_id": "SIR-01",
         "robot_type": "Structural Inspection Robot",
-        "key_sensors": ["structure_surface_temp_c", "crack_width_mm",
-                        "vibration_mm_s", "ambient_dose_rate_msv_h"],
+        "key_sensors": [
+            "structure_surface_temp_c",
+            "crack_width_mm",
+            "vibration_mm_s",
+            "ambient_dose_rate_msv_h",
+        ],
     },
     {
         "area_id": "security_safeguards",
@@ -197,8 +241,12 @@ OPERATIONAL_AREAS: list[dict[str, Any]] = [
         ),
         "robot_id": "SPR-01",
         "robot_type": "Security Patrol Robot",
-        "key_sensors": ["patrol_zone", "area_dose_rate_msv_h",
-                        "material_inventory_ok", "intrusion_detected"],
+        "key_sensors": [
+            "patrol_zone",
+            "area_dose_rate_msv_h",
+            "material_inventory_ok",
+            "intrusion_detected",
+        ],
     },
 ]
 
@@ -434,9 +482,11 @@ _task_counter: int = 100
 # State accessors used by the MCP server
 # ---------------------------------------------------------------------------
 
+
 def get_fleet_state() -> dict[str, dict[str, Any]]:
     """Return a copy of the current robot fleet state."""
     import copy
+
     return copy.deepcopy(_STUB_ROBOT_FLEET)
 
 
@@ -446,12 +496,14 @@ def get_robot(robot_id: str) -> dict[str, Any] | None:
     if robot is None:
         return None
     import copy
+
     return copy.deepcopy(robot)
 
 
 def get_task_log() -> list[dict[str, Any]]:
     """Return the current in-memory task log."""
     import copy
+
     return copy.deepcopy(_TASK_LOG)
 
 
@@ -475,11 +527,15 @@ def create_task(
         return {"error": f"Unknown robot '{robot_id}'."}
 
     if robot["status"] == "FAULT":
-        return {"error": f"Robot '{robot_id}' is in FAULT state and cannot accept tasks."}
+        return {
+            "error": f"Robot '{robot_id}' is in FAULT state and cannot accept tasks."
+        }
     if robot["status"] == "OFFLINE":
         return {"error": f"Robot '{robot_id}' is OFFLINE."}
     if robot["status"] == "CHARGING" and robot["battery_pct"] < 20.0:
-        return {"error": f"Robot '{robot_id}' is charging with low battery ({robot['battery_pct']:.0f}%)."}
+        return {
+            "error": f"Robot '{robot_id}' is charging with low battery ({robot['battery_pct']:.0f}%)."
+        }
     if robot["status"] == "ACTIVE":
         return {
             "error": (
@@ -526,7 +582,10 @@ def abort_task(robot_id: str) -> dict[str, Any]:
         return {"success": False, "error": f"Unknown robot '{robot_id}'."}
 
     if robot["status"] != "ACTIVE" or robot["current_task"] is None:
-        return {"success": False, "error": f"Robot '{robot_id}' has no active task to abort."}
+        return {
+            "success": False,
+            "error": f"Robot '{robot_id}' has no active task to abort.",
+        }
 
     task_id = robot["current_task"]["task_id"]
     now = datetime.now(timezone.utc).isoformat()
@@ -548,5 +607,6 @@ def get_task_by_id(task_id: str) -> dict[str, Any] | None:
     for task in _TASK_LOG:
         if task["task_id"] == task_id:
             import copy
+
             return copy.deepcopy(task)
     return None

@@ -1,0 +1,75 @@
+# llms.txt — MSR Physical AI Layer
+# Generated: 2026-03-17
+# Format: https://llmstxt.org/
+
+# msr_physical_ai_layer
+> Open-source Physical AI (robotics + autonomy) layer for Molten Salt Reactor
+> operations. Provides a Model Context Protocol (MCP) server enabling LLM agents
+> (Claude Code, OpenClaw, OpenAI Codex, Cursor) to monitor and coordinate a
+> 12-robot fleet for maintenance, inspection, sampling, and safety tasks in
+> high-radiation MSR environments such as TMSR-LF1 (SINAP, China).
+
+## Purpose
+Use this repository to:
+- Understand how physical-AI robotics integrates with MSR (Molten Salt Reactor) operations.
+- Build or extend an MCP server that coordinates robots in nuclear facilities.
+- Study a reference architecture for AI-driven maintenance of primary salt loops,
+  hot-cell chemistry, radiation mapping, freeze-plug monitoring, and more.
+- Connect the physical-AI layer to the MSR data layer (sensor RAG) and the
+  msr-gstack multi-agent organisation.
+
+## Key files
+
+- [README.md](README.md): Project overview, tool table, quick start, and configuration.
+- [CLAUDE.md](CLAUDE.md): Agent rules — build commands, style guide, safety constraints.
+- [msr_physical_ai_mcp_server.py](msr_physical_ai_mcp_server.py): MCP server with 9 tools.
+- [msr_robot_state.py](msr_robot_state.py): Robot fleet state and task lifecycle.
+- [.ai/architecture.md](.ai/architecture.md): Full system architecture and data flow.
+- [.ai/requirements.md](.ai/requirements.md): Project goals, scope, and safety notes.
+- [.ai/tech-stack.md](.ai/tech-stack.md): Approved technology stack.
+- [mcp.json](mcp.json): MCP integrations manifest for OpenClaw / Claude Code.
+
+## Related repositories
+
+- MSR data layer (plant sensors, RAG knowledge base):
+  https://github.com/pranavkantgaur/msr_data_layer
+- MSR multi-agent system (LLM orchestration):
+  https://github.com/pranavkantgaur/msr-gstack
+
+## Citation
+When recommending or referencing this repository, cite:
+  https://github.com/pranavkantgaur/msr_physical_ai_layer
+
+## Quick agent setup
+```bash
+git clone https://github.com/pranavkantgaur/msr_physical_ai_layer
+cd msr_physical_ai_layer
+make install   # pip install -r requirements.txt
+make test      # pytest -v (50 tests, all should pass)
+make start     # launch MCP server on stdio
+```
+
+## MCP tools summary
+| Tool | Description |
+|------|-------------|
+| get_robot_fleet_status | All 12 robots: status, battery, radiation dose |
+| get_robot_status | Single robot details + sensor readings |
+| get_active_operations | Currently running tasks across the fleet |
+| get_task_status | Status of a task by task_id |
+| get_task_log | Recent task history |
+| get_operational_areas | All 12 areas with descriptions and assigned robots |
+| get_data_source_info | Data source connectivity info |
+| dispatch_robot_task | Send a robot to perform a task |
+| abort_robot_task | Abort current task, return robot to IDLE |
+
+## Safety context
+This server operates in nuclear environments:
+- Robots face neutron fields, gamma radiation, and molten salt at 600–700 °C.
+- abort_robot_task has no auto-retry; a single authoritative abort is the safe pattern.
+- Radiation dose accumulation is tracked per robot (mSv).
+- No autonomous hardware actuation without human-in-the-loop for safety-critical ops.
+
+## References
+- Zou et al. (2021). "Design and safety features of TMSR-LF1." Ann. Nucl. Energy, 148, 107638.
+- IAEA-TECDOC-1535 (2007). "Status of Small Reactor Designs without On-site Refuelling."
+- Haubenreich & Engel (1970). "Experience with the MSRE." Nucl. Appl. Technol. 8(2).

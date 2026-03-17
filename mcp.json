@@ -1,0 +1,31 @@
+{
+  "mcpVersion": "2024-11-05",
+  "name": "msr-physical-ai-layer",
+  "description": "Physical-AI robot fleet coordination for Molten Salt Reactor operations",
+  "servers": {
+    "msr-physical-ai": {
+      "command": "python",
+      "args": ["msr_physical_ai_mcp_server.py"],
+      "env": {
+        "MSR_ROBOT_CONTROL_URL": ""
+      },
+      "description": "Local MCP server — manages 12 MSR robots over stdio (development stub when MSR_ROBOT_CONTROL_URL is unset)"
+    }
+  },
+  "tools": [
+    "get_robot_fleet_status",
+    "get_robot_status",
+    "get_active_operations",
+    "get_task_status",
+    "get_task_log",
+    "get_operational_areas",
+    "get_data_source_info",
+    "dispatch_robot_task",
+    "abort_robot_task"
+  ],
+  "notes": [
+    "Set MSR_ROBOT_CONTROL_URL to connect to a live robot-control REST API.",
+    "Without the env var the server uses a development stub with representative MSR data.",
+    "See CLAUDE.md for agent rules and safety constraints."
+  ]
+}

@@ -64,6 +64,7 @@ import msr_robot_state as _state
 # External robot-control API helpers
 # ---------------------------------------------------------------------------
 
+
 def _get_fleet_from_external(base_url: str) -> dict[str, Any] | None:
     """
     Try to fetch fleet state from an external robot-control REST API.
@@ -74,15 +75,25 @@ def _get_fleet_from_external(base_url: str) -> dict[str, Any] | None:
     try:
         req = urllib.request.Request(
             url,
-            headers={"Accept": "application/json", "User-Agent": "msr-physical-ai-layer/1.0"},
+            headers={
+                "Accept": "application/json",
+                "User-Agent": "msr-physical-ai-layer/1.0",
+            },
         )
         with urllib.request.urlopen(req, timeout=5) as resp:
             data = json.loads(resp.read().decode("utf-8"))
         if isinstance(data, dict):
             return data
-    except (urllib.error.URLError, urllib.error.HTTPError, json.JSONDecodeError,
-            OSError, TimeoutError, ValueError) as exc:
+    except (
+        urllib.error.URLError,
+        urllib.error.HTTPError,
+        json.JSONDecodeError,
+        OSError,
+        TimeoutError,
+        ValueError,
+    ) as exc:
         import sys
+
         print(
             f"[PhysicalAI] Could not fetch from MSR_ROBOT_CONTROL_URL ({exc!r}); "
             "using development stub.",
@@ -105,6 +116,7 @@ def _get_current_fleet() -> dict[str, Any]:
 # MCP tool handler functions
 # ---------------------------------------------------------------------------
 
+
 def get_robot_fleet_status() -> dict[str, Any]:
     """
     Return a summary of all robots in the MSR physical-AI fleet.
@@ -115,16 +127,20 @@ def get_robot_fleet_status() -> dict[str, Any]:
     fleet = _get_current_fleet()
     summary = []
     for robot_id, robot in fleet.items():
-        summary.append({
-            "robot_id": robot_id,
-            "robot_type": robot.get("robot_type"),
-            "area_id": robot.get("area_id"),
-            "status": robot.get("status"),
-            "battery_pct": robot.get("battery_pct"),
-            "radiation_dose_accumulated_msv": robot.get("radiation_dose_accumulated_msv"),
-            "location": robot.get("location"),
-            "has_active_task": robot.get("current_task") is not None,
-        })
+        summary.append(
+            {
+                "robot_id": robot_id,
+                "robot_type": robot.get("robot_type"),
+                "area_id": robot.get("area_id"),
+                "status": robot.get("status"),
+                "battery_pct": robot.get("battery_pct"),
+                "radiation_dose_accumulated_msv": robot.get(
+                    "radiation_dose_accumulated_msv"
+                ),
+                "location": robot.get("location"),
+                "has_active_task": robot.get("current_task") is not None,
+            }
+        )
     return {
         "fleet_size": len(summary),
         "robots": summary,
@@ -254,14 +270,21 @@ def get_data_source_info() -> dict[str, Any]:
         try:
             req = urllib.request.Request(
                 url,
-                headers={"Accept": "application/json", "User-Agent": "msr-physical-ai-layer/1.0"},
+                headers={
+                    "Accept": "application/json",
+                    "User-Agent": "msr-physical-ai-layer/1.0",
+                },
             )
             with urllib.request.urlopen(req, timeout=5) as resp:
                 resp.read()
             info["connected"] = True
             info["message"] = "External robot-control API reachable."
-        except (urllib.error.URLError, urllib.error.HTTPError,
-                OSError, TimeoutError) as exc:
+        except (
+            urllib.error.URLError,
+            urllib.error.HTTPError,
+            OSError,
+            TimeoutError,
+        ) as exc:
             info["connected"] = False
             info["message"] = f"External robot-control API unreachable: {exc}"
     else:
@@ -496,17 +519,23 @@ TOOL_MAP: dict[str, dict[str, Any]] = {t["name"]: t for t in TOOLS}
 # JSON-RPC request / response helpers
 # ---------------------------------------------------------------------------
 
+
 def _jsonrpc_result(request_id: Any, result: Any) -> dict[str, Any]:
     return {"jsonrpc": "2.0", "id": request_id, "result": result}
 
 
 def _jsonrpc_error(request_id: Any, code: int, message: str) -> dict[str, Any]:
-    return {"jsonrpc": "2.0", "id": request_id, "error": {"code": code, "message": message}}
+    return {
+        "jsonrpc": "2.0",
+        "id": request_id,
+        "error": {"code": code, "message": message},
+    }
 
 
 # ---------------------------------------------------------------------------
 # MCP message dispatcher
 # ---------------------------------------------------------------------------
+
 
 def handle_message(raw: str) -> str:
     """

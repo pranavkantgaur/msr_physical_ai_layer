@@ -6,3 +6,19 @@ __pycache__/
 dist/
 build/
 .env
+.env.*
+!.env.example
+
+# Coverage reports
+.coverage
+coverage.xml
+htmlcov/
+
+# Editor / AI agent ignore files
+.cursorignore
+.cursor/
+.vscode/
+
+# OS artefacts
+.DS_Store
+Thumbs.db
