@@ -109,8 +109,22 @@ Set `MSR_PLANT_DATA_URL` pointing at the `msr_data_layer` MCP server, then
 the data layer's sensor readings become available alongside robot state for
 fused LLM queries.
 
+## GTC 2026 Physical AI integration guide
+
+Key innovations from NVIDIA GTC 2026 that are relevant to this repo are analysed
+in [`.ai/gtc2026-physical-ai.md`](.ai/gtc2026-physical-ai.md).
+
+TL;DR for agents:
+- **Opentrons Flex** (EX82361) can serve as the `MSR_ROBOT_CONTROL_URL` backend
+  for HCPR-01 (hot-cell chemistry) and SSR-01 (salt sampling) with a thin REST adapter.
+- **NVIDIA Isaac ROS** is the target ROS 2 bridge for all 12 robots.
+- **NVIDIA HALOS** formalises the safety constraints already in `.ai/requirements.md`.
+- **Newton physics engine** + **Isaac Lab** is the training stack for manipulation tasks.
+- **Cosmos-Predict2** generates synthetic MSR environment data for sim-to-real training.
+
 ## Relevant papers & references
 
 - Zou, Y. et al. (2021). "Design and safety features of TMSR-LF1." *Ann. Nucl. Energy*, 148, 107638.
 - IAEA-TECDOC-1535 (2007). "Status of Small Reactor Designs without On-site Refuelling."
 - Haubenreich & Engel (1970). "Experience with the MSRE." *Nucl. Appl. Technol.* 8(2).
+- Mittal, M. et al. (2025). "Isaac Lab: A GPU-Accelerated Simulation Framework for Multi-Modal Robot Learning." *arXiv:2511.04831*.

@@ -128,3 +128,39 @@ physical-AI layer.
 - **Persistent state**: Replace `_STUB_ROBOT_FLEET` and `_TASK_LOG` with a
   time-series DB adapter (InfluxDB, TimescaleDB) behind the existing state
   accessor functions.
+
+## Physical AI ecosystem integration (GTC 2026)
+
+The diagram below shows how current-generation physical-AI platforms from GTC 2026
+slot into the architecture via the `MSR_ROBOT_CONTROL_URL` extension point:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    LLM Agent (Claude, GPT-5, etc.)          │
+└──────────────────────────┬──────────────────────────────────┘
+                           │ MCP JSON-RPC 2.0 (stdio)
+┌──────────────────────────▼──────────────────────────────────┐
+│           msr_physical_ai_mcp_server.py  (this repo)        │
+│   dispatch_robot_task / abort_robot_task / monitoring tools │
+└──────────────────────────┬──────────────────────────────────┘
+                           │ HTTP  MSR_ROBOT_CONTROL_URL
+             ┌─────────────┼──────────────────┐
+             │             │                  │
+   ┌─────────▼──────┐ ┌────▼──────────┐ ┌────▼──────────────────┐
+   │ Opentrons Flex │ │ NVIDIA Isaac  │ │ TMSR-LF1 Omniverse    │
+   │ REST adapter   │ │ ROS 2 bridge  │ │ Digital Twin (USD)     │
+   │ (HCPR / SSR)   │ │ (all 12 bots) │ │ + Isaac Lab policies  │
+   └────────────────┘ └───────────────┘ └───────────────────────┘
+```
+
+Priority integrations (from GTC 2026 analysis):
+
+| Priority | Platform | Sessions | Robots served |
+|----------|----------|----------|---------------|
+| 1 | Opentrons Flex — Python Protocol API | EX82361 | HCPR-01, SSR-01 |
+| 2 | NVIDIA Isaac ROS 2 bridge | S82100 | All 12 |
+| 3 | NVIDIA HALOS safety framework | CWES81819 | All 12 (abort path) |
+| 4 | TMSR-LF1 Omniverse digital twin | S81875, CWES81472 | All 12 |
+| 5 | Isaac Lab + Newton policy training | S81613, DLIT81700 | PLMR-01, GIR-01, WSHR-01 |
+
+Full analysis: see [`.ai/gtc2026-physical-ai.md`](gtc2026-physical-ai.md).

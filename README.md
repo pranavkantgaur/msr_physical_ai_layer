@@ -123,6 +123,26 @@ make format        # auto-fix formatting
 make coverage      # pytest with ≥70 % coverage gate
 ```
 
+## GTC 2026 Physical AI innovations — MSR relevance
+
+Two NVIDIA GTC 2026 sessions are of direct relevance to this repository:
+
+| Session | Title | MSR relevance |
+|---------|-------|---------------|
+| [S82100](https://www.nvidia.com/gtc/session-catalog/sessions/gtc26-s82100/) | Develop Physical AI Applications and Build Data Factories | NVIDIA data-factory pipeline (Isaac Sim + Cosmos + GR00T + Newton) trains policies for all 12 MSR robots |
+| [EX82361](https://www.nvidia.com/gtc/session-catalog/sessions/gtc26-ex82361/) | Opentrons: Close the Gap Between Intent and Execution in Lab Automation | Opentrons Flex open-source lab robot — direct adapter for HCPR-01 (hot-cell chemistry) and SSR-01 (salt sampling) |
+
+The **Opentrons Python Protocol API** (`github.com/Opentrons/opentrons`) implements
+the same intent-to-execution pattern as this MCP server: natural language intent →
+structured robot command → physical execution.  An Opentrons Flex can serve as the
+`MSR_ROBOT_CONTROL_URL` backend for chemistry-automation tasks with a thin REST wrapper.
+
+Additional relevant GTC 2026 sessions: **S81875** (digital twin for fusion),
+**CWES81819** (NVIDIA HALOS safety framework), **S81613** (Newton physics engine),
+**DLIT81808** (contact-rich manipulation training), **S81790** (AI chemistry lab).
+
+→ Full analysis: [`.ai/gtc2026-physical-ai.md`](.ai/gtc2026-physical-ai.md)
+
 ## Related repositories
 
 | Repo | Role |
@@ -140,9 +160,11 @@ make coverage      # pytest with ≥70 % coverage gate
    Reactor Experiment." *Nuclear Applications & Technology*, 8(2), 118–136.
 4. Renault, C. et al. (2010). "The Molten Salt Reactor (MSR) in Generation IV:
    Overview and Perspectives." *GIF Symposium*, Paris.
+5. Mittal, M. et al. (2025). "Isaac Lab: A GPU-Accelerated Simulation Framework
+   for Multi-Modal Robot Learning." *arXiv:2511.04831*.
 
 ---
 
 *Topics: molten-salt-reactor · msr · nuclear-engineering · physical-ai ·
 ai-agents · multi-agent-system · mcp · claude-code · openclaw-ready ·
-tmsr-lf1 · robotics · radiation-mapping · hot-cell-automation*
+tmsr-lf1 · robotics · radiation-mapping · hot-cell-automation · isaac-lab · opentrons*

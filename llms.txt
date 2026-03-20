@@ -28,6 +28,7 @@ Use this repository to:
 - [.ai/requirements.md](.ai/requirements.md): Project goals, scope, and safety notes.
 - [.ai/tech-stack.md](.ai/tech-stack.md): Approved technology stack.
 - [mcp.json](mcp.json): MCP integrations manifest for OpenClaw / Claude Code.
+- [.ai/gtc2026-physical-ai.md](.ai/gtc2026-physical-ai.md): GTC 2026 physical AI innovations mapped to MSR robots (Opentrons, Isaac Lab, Newton, HALOS, Cosmos, digital twin for fusion).
 
 ## Related repositories
 
